@@ -110,6 +110,18 @@ function onMessage(oscMsg) {
 
 It's a processing (Java) implementation of OSC.
 
+Open osc_udp.pde with Processing,
+
+Run your Unity application
+
+Setup *IN PORT*  *<u>Default</u> : 6161*
+
+Setup *IP* for local communication *<u>Default</u> : 127.0.0.1*
+
+Setup *OUT PORT* *<u>Default</u> : 6969*
+
+Run your processing sketch
+
 ```processing
 ...
 /* start oscP5, listening for incoming messages at port 6161 */
