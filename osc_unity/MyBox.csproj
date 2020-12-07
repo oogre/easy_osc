@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{CDBC005F-E30A-67EF-7AAB-FBB3BCE1882F}</ProjectGuid>
+    <ProjectGuid>{B666AC9C-7577-6733-9238-3CBC8C2956C9}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>MyBox</AssemblyName>
@@ -193,10 +193,10 @@
     <None Include="Assets\Scripts\OSC\Lib\MyBox\Types\GUID\Credits.txt" />
     <None Include="Assets\Scripts\OSC\Lib\MyBox\MyBox.asmdef" />
     <Reference Include="UnityEditor.UI">
-      <HintPath>/Users/ogre/works/20-21/ESA-BXL/B3/Unity/OSC/server/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+      <HintPath>/Users/ogre/works/20-21/ESA-BXL/B3/easy_osc/osc_unity/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
-      <HintPath>/Users/ogre/works/20-21/ESA-BXL/B3/Unity/OSC/server/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+      <HintPath>/Users/ogre/works/20-21/ESA-BXL/B3/easy_osc/osc_unity/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>/Applications/Unity/Hub/Editor/2019.3.5f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
