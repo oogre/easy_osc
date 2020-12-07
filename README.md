@@ -141,7 +141,7 @@ void oscEvent(OscMessage theOscMessage) {
 }
 ```
 
-### ### Dependencies
+### Dependencies
 
 - Unity : 
   
