@@ -1,57 +1,61 @@
-# Easy OSC
+Easy OSC
 
-## This repo purpose
+## wusProxy
 
-We've build this repo to destination of students at ESA Brussel / Digital Art. This is a public repository, cause OSC communication between WebBrowsers, Processing, Arduino and Unity is not well documented on the web from our point of view. While it is a massive empowerment of our art projects. 
+wusProxy is a middleware. It convert communications between Serial, Websocket and UDP. This piece of code is written in Processing (Java), you could find into wus_proxy folder all the code needed. To run this code install [Processing](http://processing.org), then install dependencies [controlP5]() and [udp]() (you'll find these dependencies into the libraries folder).
 
-## Content
+Open wus_proxy.pde with processing IDE, then click Play button.
 
-- [Arduino](./arduino/README.md)
+![wusProxy.gif](./../doc/wusProxy.gif)
 
-- [Processing](./processing/README.md)
+### Serial2ws
 
-- [Unity](./unity/README.md)
+Select Serial Port,  it identifies your Arduino.
 
-- [WebBrowser](./webBrowser/README.md)
+Select BaudRate, it lets machines to communicate at this frequency.
 
-## Communication
+Setup PortNumber, it will run a Web Socket on this port number.
 
-- Arduino x Arduino
-  
-  - [oscSerial](./arduino/README.md#oscSerial) **x** [oscSerial](./arduino/README.md#oscSerial)
+Then press start.
 
-- Arduino x Processing
-  
-  - [oscSerial](./arduino/README.md#oscSerial) **x** [wusProxy/serial2udp](./wusProxy/README.md#serial2udp) **x** [oscUDP](./processing/README.md#udp)
+![wusProxyWS.gif](./../doc/wusProxyWS.gif)
 
-- Arduino x Unity
-  
-  - [oscSerial](./arduino/README.md#oscSerial) **x** [wusProxy/serial2udp](./wusProxy/README.md#serial2udp) **x** [oscUnity](./unity/README.md#udp)
+The left black square turns white when wusProxy receive message from Arduino
 
-- Arduino x WebBrowser
-  
-  - [oscSerial](./arduino/README.md#oscSerial) **x** [wusProxy/serial2ws](./wusProxy/README.md#serial2ws) **x** [oscBrowser](./webBrowser/README.md)
+The right black square turns white when wusProxy receive message on Web Socket Server.
 
-- Processing x Processing
-  
-  - [oscUDP](./processing/README.md#udp) **x** [oscUDP](./processing/README.md#udp)
+These message will be automatically transfered from left to right and from right to left 
 
-- Processing x Unity
-  
-  - [oscUDP](./processing/README.md#udp) **x** [oscUnity](./unity/README.md#udp)
+### Serial2udp
 
-- Processing x WebBrowser
-  
-  - [oscWS](./processing/README.md#ws) **x** [oscBrowser](./webBrowser/README.md)
+Select Serial Port, it identifies your Arduino.
 
-- Unity x Unity
-  
-  - [oscUnity](./unity/README.md#udp) **x** [oscUnity](./unity/README.md#udp)
+Select BaudRate, it lets machines to communicate at this frequency.
 
-- Unity x WebBrowser
-  
-  - [oscUnity](./unity/README.md#ws) **x** [oscBrowser](./webBrowser/README.md)
+Setup IncommingPortNumber, it will receive UDP request from this port number.
 
-- WebBrowser x WebBrowser
-  
-  - [oscBrowser](./webBrowser/README.md) **x** [wusProxy/ws2ws](./wusProxy/README.md#ws2ws) **x** [oscBrowser](./webBrowser/README.md)
+Setup OutGoingPortNumber, it will send UDP request on this port number.
+
+Then press start.
+
+![wusProxyUDP.gif](./../doc/wusProxyUDP.gif)
+
+The left black square turns white when wusProxy receive message from Arduino
+
+The right black square turns white when wusProxy receive UDP message.
+
+These messages will be automatically transfered from left to right and from right to left
+
+### ws2ws
+
+Setup PortNumber, it will run a Web Socket on this port number.
+
+Then press start. It will start a webSocket server, it will broadcast any message to all clients except the original sender.
+
+![wusProxyWS2WS.gif](/Users/ogre/works/20-21/ESA-BXL/B3/easy_osc/doc/wusProxyWS2WS.gif)
+
+The left black square turns white when wusProxy receive message from Client
+
+The right black square turns white when wusProxy send message to Clients
+
+These messages will be automatically transfered from left to right and from right to left

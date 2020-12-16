@@ -1,8 +1,10 @@
-# How to use : *osc_webBrowser*
+# Easy OSC
 
-Drop index.html into your webBrowser, 
+## Web Browser
 
-Run your Unity application
+Drop index.html from oscBrowser forlder into your webBrowser. It use [osc.js](https://github.com/colinbdclark/osc.js) library, you can find it into library folder.
+
+#### Initialization
 
 Setup *IP* *<u>Default</u> : 127.0.0.1*
 
@@ -10,7 +12,7 @@ Setup *PORT* for communication IN & OUT *<u>Default</u> : 6969*
 
 Click *Connect*
 
-###### Send :
+#### Send :
 
 You just have to setup html for sending data 
 
@@ -30,7 +32,7 @@ You just have to setup html for sending data
 </li>
 ```
 
-###### Recieve :
+#### Recieve :
 
 Just implement this script into a new javascript file.
 
@@ -45,7 +47,3 @@ function onMessage(oscMsg) {
     console.log("An OSC message just arrived!", oscMsg);
 }
 ```
-
-### Dependencies
-
-- [GitHub - colinbdclark/osc.js: An Open Sound Control (OSC) library for JavaScript that works in both the browser and Node.js](https://github.com/colinbdclark/osc.js)

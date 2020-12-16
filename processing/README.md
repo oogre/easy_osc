@@ -1,57 +1,112 @@
 # Easy OSC
 
-## This repo purpose
+## Processing
 
-We've build this repo to destination of students at ESA Brussel / Digital Art. This is a public repository, cause OSC communication between WebBrowsers, Processing, Arduino and Unity is not well documented on the web from our point of view. While it is a massive empowerment of our art projects. 
+This piece of code is written in Processing (Java), you could find into oscUDP and oscWS folders all the code needed. To run this code install [Processing](http://processing.org), then install dependencies [oscP5]() and [webSockets]() (you'll find these dependencies into the libraries folder).
 
-## Content
+### oscUDP
 
-- [Arduino](./arduino/README.md)
+#### Initialization
 
-- [Processing](./processing/README.md)
+```processing
+import oscP5.*;
+import netP5.*;
 
-- [Unity](./unity/README.md)
+final int UDP_IN_PORT = 12000;
+final int UDP_OUT_PORT = 12001;
+final String IP = "127.0.0.1";
 
-- [WebBrowser](./webBrowser/README.md)
+OscP5 oscP5;
+NetAddress myRemoteLocation;
 
-## Communication
+void setup() {
+  oscP5 = new OscP5(this, UDP_IN_PORT);
+  myRemoteLocation = new NetAddress(IP, UDP_OUT_PORT);
+}
+```
 
-- Arduino x Arduino
-  
-  - [oscSerial](./arduino/README.md#oscSerial) **x** [oscSerial](./arduino/README.md#oscSerial)
+#### Read
 
-- Arduino x Processing
-  
-  - [oscSerial](./arduino/README.md#oscSerial) **x** [wusProxy/serial2udp](./wusProxy/README.md#serial2udp) **x** [oscUDP](./processing/README.md#udp)
+```processing
+void draw(){   
+}
 
-- Arduino x Unity
-  
-  - [oscSerial](./arduino/README.md#oscSerial) **x** [wusProxy/serial2udp](./wusProxy/README.md#serial2udp) **x** [oscUnity](./unity/README.md#udp)
+void oscEvent(OscMessage theOscMessage) {
+  /* print the address pattern and the typetag of the received OscMessage */
+  print("### received an osc message.");
+  print(" addrpattern: "+theOscMessage.addrPattern());
+  println(" typetag: "+theOscMessage.typetag());
+  // theOscMessage.get(0).floatValue() // to get first param as float
+  // theOscMessage.get(1).intValue() // to get second param as integer
+}
+```
 
-- Arduino x WebBrowser
-  
-  - [oscSerial](./arduino/README.md#oscSerial) **x** [wusProxy/serial2ws](./wusProxy/README.md#serial2ws) **x** [oscBrowser](./webBrowser/README.md)
+#### Write
 
-- Processing x Processing
-  
-  - [oscUDP](./processing/README.md#udp) **x** [oscUDP](./processing/README.md#udp)
+```processing
+void draw(){
+  OscMessage myMessage = new OscMessage("/test");
+  myMessage.add(123.0); /* add an float to the osc message */
+  myMessage.add(987);   /* add an int to the osc message */
+  oscP5.send(myMessage, myRemoteLocation); 
+}
+```
 
-- Processing x Unity
-  
-  - [oscUDP](./processing/README.md#udp) **x** [oscUnity](./unity/README.md#udp)
+### oscWS
 
-- Processing x WebBrowser
-  
-  - [oscWS](./processing/README.md#ws) **x** [oscBrowser](./webBrowser/README.md)
+#### Initialization
 
-- Unity x Unity
-  
-  - [oscUnity](./unity/README.md#udp) **x** [oscUnity](./unity/README.md#udp)
+By default oscP5 will run with UDP but we can inject WebSocket message in this object for interpretation. As wll every UDP setup won't be used, neither they are needed.
 
-- Unity x WebBrowser
-  
-  - [oscUnity](./unity/README.md#ws) **x** [oscBrowser](./webBrowser/README.md)
+```processing
+import java.net.DatagramPacket;
+import websockets.*;
+import oscP5.*;
+import netP5.*;
 
-- WebBrowser x WebBrowser
-  
-  - [oscBrowser](./webBrowser/README.md) **x** [wusProxy/ws2ws](./wusProxy/README.md#ws2ws) **x** [oscBrowser](./webBrowser/README.md)
+final int UDP_IN_PORT = 12000; // unused
+final int UDP_OUT_PORT = 12001;// unused
+final int WS_PORT = 6969; // WebSocket port
+final String IP = "127.0.0.1";
+
+OscP5 oscP5;
+NetAddress myRemoteLocation;
+WebsocketServer ws;
+
+void setup() {
+  oscP5 = new OscP5(this, UDP_IN_PORT);
+  myRemoteLocation = new NetAddress(IP, UDP_OUT_PORT);
+  ws= new WebsocketServer(this, WS_PORT, "/");
+}
+```
+
+#### Read
+
+```processing
+void draw(){   
+}
+
+void webSocketServerEvent(byte[] data, int offset, int length) {
+  DatagramPacket myPacket = new DatagramPacket(data, length, myRemoteLocation.inetaddress(), WS_PORT);
+  oscP5.process(myPacket, WS_PORT);
+}
+
+void oscEvent(OscMessage theOscMessage) {
+  /* print the address pattern and the typetag of the received OscMessage */
+  print("### received an osc message.");
+  print(" addrpattern: "+theOscMessage.addrPattern());
+  println(" typetag: "+theOscMessage.typetag());
+  // theOscMessage.get(0).floatValue() // to get first param as float
+  // theOscMessage.get(1).intValue() // to get second param as integer
+}
+```
+
+#### Write
+
+```processing
+void draw(){
+  OscMessage myMessage = new OscMessage("/test");
+  myMessage.add(123); /* add an int to the osc message */ 
+  ws.sendMessage(myMessage.getBytes());
+}
+```
