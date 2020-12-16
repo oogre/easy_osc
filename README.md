@@ -6,52 +6,52 @@ We've build this repo to destination of students at ESA Brussel / Digital Art. T
 
 ## Content
 
-- [Arduino](./arduino/README.md)
+- [Arduino](./arduino)
 
-- [Processing](./processing/README.md)
+- [Processing](./processing)
 
-- [Unity](./unity/README.md)
+- [Unity](./unity)
 
-- [WebBrowser](./webBrowser/README.md)
+- [WebBrowser](./webBrowser)
 
 ## Communication
 
 - Arduino x Arduino
   
-  - [oscSerial](./arduino/README.md#oscSerial) **x** [oscSerial](./arduino/README.md#oscSerial)
+  - [oscSerial](./arduino#oscSerial) **x** [oscSerial](./arduino#oscSerial)
 
 - Arduino x Processing
   
-  - [oscSerial](./arduino/README.md#oscSerial) **x** [wusProxy/serial2udp](./wusProxy/README.md#serial2udp) **x** [oscUDP](./processing/README.md#udp)
+  - [oscSerial](./arduino#oscSerial) **x** [wusProxy/serial2udp](./wusProxy#serial2udp) **x** [oscUDP](./processing#udp)
 
 - Arduino x Unity
   
-  - [oscSerial](./arduino/README.md#oscSerial) **x** [wusProxy/serial2udp](./wusProxy/README.md#serial2udp) **x** [oscUnity](./unity/README.md#udp)
+  - [oscSerial](./arduino#oscSerial) **x** [wusProxy/serial2udp](./wusProxy#serial2udp) **x** [oscUnity](./unity#udp)
 
 - Arduino x WebBrowser
   
-  - [oscSerial](./arduino/README.md#oscSerial) **x** [wusProxy/serial2ws](./wusProxy/README.md#serial2ws) **x** [oscBrowser](./webBrowser/README.md)
+  - [oscSerial](./arduino#oscSerial) **x** [wusProxy/serial2ws](./wusProxy#serial2ws) **x** [oscBrowser](./webBrowser)
 
 - Processing x Processing
   
-  - [oscUDP](./processing/README.md#udp) **x** [oscUDP](./processing/README.md#udp)
+  - [oscUDP](./processing#udp) **x** [oscUDP](./processing#udp)
 
 - Processing x Unity
   
-  - [oscUDP](./processing/README.md#udp) **x** [oscUnity](./unity/README.md#udp)
+  - [oscUDP](./processing#udp) **x** [oscUnity](./unity#udp)
 
 - Processing x WebBrowser
   
-  - [oscWS](./processing/README.md#ws) **x** [oscBrowser](./webBrowser/README.md)
+  - [oscWS](./processing#ws) **x** [oscBrowser](./webBrowser)
 
 - Unity x Unity
   
-  - [oscUnity](./unity/README.md#udp) **x** [oscUnity](./unity/README.md#udp)
+  - [oscUnity](./unity#udp) **x** [oscUnity](./unity#udp)
 
 - Unity x WebBrowser
   
-  - [oscUnity](./unity/README.md#ws) **x** [oscBrowser](./webBrowser/README.md)
+  - [oscUnity](./unity#ws) **x** [oscBrowser](./webBrowser)
 
 - WebBrowser x WebBrowser
   
-  - [oscBrowser](./webBrowser/README.md) **x** [wusProxy/ws2ws](./wusProxy/README.md#ws2ws) **x** [oscBrowser](./webBrowser/README.md)
+  - [oscBrowser](./webBrowser) **x** [wusProxy/ws2ws](./wusProxy#ws2ws) **x** [oscBrowser](./webBrowser)
