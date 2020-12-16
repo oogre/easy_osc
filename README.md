@@ -14,6 +14,8 @@ We've build this repo to destination of students at ESA Brussel / Digital Art. T
 
 - [WebBrowser](./webBrowser)
 
+- [WusProxy](./wusProxy)
+
 ## Communication
 
 - Arduino x Arduino

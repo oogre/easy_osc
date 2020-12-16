@@ -18,11 +18,19 @@ void setup() {
 void loop() {
   OSCreceive();
   
-  sendMessage("/cube/x", (int)random(-10, 10));
-
+  OSCMessage msg("/cube/x");
+  msg.add((int)random(-10, 10));
+  send(&msg);
+  
   delay(33);
 }
 
+void send(OSCMessage * msg) {
+  SLIPSerial.beginPacket();
+  msg->send(SLIPSerial); // send the bytes to the SLIP stream
+  SLIPSerial.endPacket(); // mark the end of the OSC Packet
+  msg->empty(); // free space occupied by message
+}
 
 void OSCreceive() {
   OSCMessage messageIN;
@@ -35,7 +43,6 @@ void OSCreceive() {
 
   if (!messageIN.hasError()) {
     messageIN.dispatch("/led", LEDcontrol);
-    messageIN.dispatch("/bonjour", HelloWorld);
   }
 }
 
@@ -49,14 +56,5 @@ void LEDcontrol(OSCMessage &msg)
       state = HIGH;
     }
     digitalWrite(LED_BUILTIN, state);
-  }
-}
-
-void HelloWorld(OSCMessage &msg)
-{
-  if (msg.isString(0))
-  {
-    String t = msg.getString(0);
-    //do nothing with it
   }
 }

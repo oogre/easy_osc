@@ -1,57 +1,73 @@
 # Easy OSC
 
-## This repo purpose
+## Arduino
 
-We've build this repo to destination of students at ESA Brussel / Digital Art. This is a public repository, cause OSC communication between WebBrowsers, Processing, Arduino and Unity is not well documented on the web from our point of view. While it is a massive empowerment of our art projects. 
+Install this dependency : [GitHub - CNMAT/OSC: OSC: Arduino and Teensy implementation of OSC encoding](https://github.com/CNMAT/OSC) 
 
-## Content
+### Initialization
 
-- [Arduino](./arduino/README.md)
+```arduino
+#include <OSCMessage.h>
+#include <OSCBoards.h>
 
-- [Processing](./processing/README.md)
+#ifdef BOARD_HAS_USB_SERIAL
+#include <SLIPEncodedUSBSerial.h>
+SLIPEncodedUSBSerial SLIPSerial( thisBoardsSerialUSB );
+#else
+#include <SLIPEncodedSerial.h>
+SLIPEncodedSerial SLIPSerial(Serial); // Change to Serial1 or Serial2 etc. for boards with multiple serial ports that don’t have Serial
+#endif
+```
 
-- [Unity](./unity/README.md)
+```arduino
+void setup() {
+  SLIPSerial.begin(9600);
+}
+```
 
-- [WebBrowser](./webBrowser/README.md)
+### Read
 
-## Communication
+```arduino
+void loop() {
+  OSCMessage messageIN;
+  int size;
+  if (SLIPSerial.available())
+    while (!SLIPSerial.endofPacket())
+      while (SLIPSerial.available())
+        messageIN.fill(SLIPSerial.read());
 
-- Arduino x Arduino
-  
-  - [oscSerial](./arduino/README.md#oscSerial) **x** [oscSerial](./arduino/README.md#oscSerial)
+  if (!messageIN.hasError()) {
+    messageIN.dispatch("/led", LEDcontrol);
+  }
+}
 
-- Arduino x Processing
-  
-  - [oscSerial](./arduino/README.md#oscSerial) **x** [wusProxy/serial2udp](./wusProxy/README.md#serial2udp) **x** [oscUDP](./processing/README.md#udp)
+void LEDcontrol(OSCMessage &msg)
+{
+  if (msg.isFloat(0)){
+    pinMode(LED_BUILTIN, OUTPUT);
+    bool state = LOW;
+    if(msg.getFloat(0) > 0){
+      state = HIGH;
+    }
+    digitalWrite(LED_BUILTIN, state);
+  }
+}
+```
 
-- Arduino x Unity
-  
-  - [oscSerial](./arduino/README.md#oscSerial) **x** [wusProxy/serial2udp](./wusProxy/README.md#serial2udp) **x** [oscUnity](./unity/README.md#udp)
+### Write
 
-- Arduino x WebBrowser
-  
-  - [oscSerial](./arduino/README.md#oscSerial) **x** [wusProxy/serial2ws](./wusProxy/README.md#serial2ws) **x** [oscBrowser](./webBrowser/README.md)
+```arduino
+void loop() {
+  OSCMessage msg("/cube/x");
+  msg.add((int)random(-10, 10));
+  send(&msg);
+  delay(33);
+}
 
-- Processing x Processing
-  
-  - [oscUDP](./processing/README.md#udp) **x** [oscUDP](./processing/README.md#udp)
-
-- Processing x Unity
-  
-  - [oscUDP](./processing/README.md#udp) **x** [oscUnity](./unity/README.md#udp)
-
-- Processing x WebBrowser
-  
-  - [oscWS](./processing/README.md#ws) **x** [oscBrowser](./webBrowser/README.md)
-
-- Unity x Unity
-  
-  - [oscUnity](./unity/README.md#udp) **x** [oscUnity](./unity/README.md#udp)
-
-- Unity x WebBrowser
-  
-  - [oscUnity](./unity/README.md#ws) **x** [oscBrowser](./webBrowser/README.md)
-
-- WebBrowser x WebBrowser
-  
-  - [oscBrowser](./webBrowser/README.md) **x** [wusProxy/ws2ws](./wusProxy/README.md#ws2ws) **x** [oscBrowser](./webBrowser/README.md)
+void send(OSCMessage * msg) {
+  SLIPSerial.beginPacket();
+  msg->send(SLIPSerial); // send the bytes to the SLIP stream
+  SLIPSerial.endPacket(); // mark the end of the OSC Packet
+  msg->empty(); // free space occupied by message
+}
+```
