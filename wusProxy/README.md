@@ -52,7 +52,7 @@ Setup PortNumber, it will run a Web Socket on this port number.
 
 Then press start. It will start a webSocket server, it will broadcast any message to all clients except the original sender.
 
-![wusProxyWS2WS.gif](/Users/ogre/works/20-21/ESA-BXL/B3/easy_osc/doc/wusProxyWS2WS.gif)
+![wusProxyWS2WS.gif](./../doc/wusProxyWS2WS.gif)
 
 The left black square turns white when wusProxy receive message from Client
 

@@ -24,7 +24,7 @@ We've build this repo to destination of students at ESA Brussel / Digital Art. T
 
 - Arduino x Processing
   
-  - [oscSerial](./arduino#oscSerial) **x** [wusProxy/serial2udp](./wusProxy#serial2udp) **x** [oscUDP](./processing#udp)
+  - [oscSerial](./arduino#oscSerial) **x** [wusProxy/serial2udp](./wusProxy#serial2udp) **x** [oscUDP](./processing#oscudp)
 
 - Arduino x Unity
   
@@ -36,15 +36,15 @@ We've build this repo to destination of students at ESA Brussel / Digital Art. T
 
 - Processing x Processing
   
-  - [oscUDP](./processing#udp) **x** [oscUDP](./processing#udp)
+  - [oscUDP](./processing#oscudp) **x** [oscUDP](./processing#oscudp)
 
 - Processing x Unity
   
-  - [oscUDP](./processing#udp) **x** [oscUnity](./unity#udp)
+  - [oscUDP](./processing#oscudp) **x** [oscUnity](./unity#udp)
 
 - Processing x WebBrowser
   
-  - [oscWS](./processing#ws) **x** [oscBrowser](./webBrowser)
+  - [oscWS](./processing#oscws) **x** [oscBrowser](./webBrowser)
 
 - Unity x Unity
   
