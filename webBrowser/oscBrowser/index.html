@@ -12,58 +12,13 @@
     }
   </style>
   <script src="./scripts/lib/osc.js/osc-browser.min.js"></script>
+  <script src="./scripts/lib/p5/p5.min.js"></script>
   <script src="./scripts/sketch.js"></script>
 </head>
 
 <body>
   <section  id="configuration">
-    <h2>Configuration</h2>
-    <form>
-      <h3>Server</h3>
-      <ul>
-        <li>
-          <label for="IP">IP : </label>
-          <input id="IP" name="IP" type="text" placeholder="127.0.0.1" value="127.0.0.1"/>
-        </li>
-        <li>
-          <label for="port">Port : </label>
-          <input id="port" name="port" type="number" placeholder="6969" value="6969"/>
-        </li>
-        <li>
-          <input type="submit" value="Connect"/>
-        </li>
-      </ul>
-    </form>
-  </section>
-  <section class="hide" id="controllers">
-     <form>
-      <h3>Controllers</h3>
-      <ul>
-        <li>
-          <label for="title">Title : </label>
-          <input id="title" type="text" name="/title"/>
-        </li>
-        <li>
-          <label for="cube_x">Cube X : </label>
-          <input id="cube_x" type="range" min="-5" max="5" step="0.1" name="/cube/x"/>
-          <span></span>
-        </li>
-        <li>
-          <label for="cube_y">Cube Y : </label>
-          <input id="cube_y" type="range" min="-5" max="5" step="0.1" name="/cube/y"/>
-          <span></span>
-        </li>
-        <li>
-          <label for="cube_z">Cube z : </label>
-          <input id="cube_z" type="range" min="-5" max="5" step="0.1" name="/cube/z"/>
-          <span></span>
-        </li>
-        <li>
-          <label for="led">led : </label>
-          <input id="led" type="range" min="-5" max="5" step="1" name="/led"/>
-          <span></span>
-        </li>
-  </section>
+    
 </body>
 
 </html>

@@ -1,130 +1,61 @@
 let oscPort;
-let connected = false;
-
-function docReady(fn) {
-    // see if DOM is already available
-    if (document.readyState === "complete" || document.readyState === "interactive") {
-        // call on next available tick
-        setTimeout(fn, 1);
-    } else {
-        document.addEventListener("DOMContentLoaded", fn);
-    }
+let server = {
+	IP : "127.0.0.1",
+	port : 6969
 }
-
 function setup() {
-	const controlInputs = [...document.querySelectorAll("#controllers input")];
-	for(const input of controlInputs){
-		removeValue(input);
-		disable(input);
-	}
-	document.querySelector("#configuration form").addEventListener("submit", onConfiguration, false);
+	oscPort = new osc.WebSocketPort({
+		url: `ws://${server.IP}:${server.port}`, // URL to your Web Socket server.
+		metadata: true
+	});
+	oscPort.on("ready", onOscReady);
+	oscPort.on("close", onOscClose);
+	oscPort.on("message", onMessage);
+	oscPort.open();
 }
 
-function onConfiguration(event){
-	event.preventDefault();
-	if(!connected){
-		const server = {};
-		const configInputs = [...document.querySelectorAll("#configuration input:not([type=submit])")];
-		for(const input of configInputs){
-			server[input.name] = input.value;
-		}
-		oscPort = new osc.WebSocketPort({
-			url: `ws://${server.IP}:${server.port}`, // URL to your Web Socket server.
-			metadata: true
-		});
-		oscPort.on("ready", onOscRead);
-		oscPort.on("close", onOscClose);
-		oscPort.on("message", onMessage);
-		oscPort.open();
-	}
-	else{
-		oscPort.close();
-	}
-	
-	return false;
+function draw(){
+	send("/theAddress", floor(random(-10, 10)));
+    send("/other/address", random(-10, 10));
+    send("/yet/another/address", "text");
 }
 
-function onMessage(oscMsg) {
-	console.log("An OSC message just arrived!", oscMsg);
-}
 
-function onOscRead(){
-	connected = true;
-	document.querySelector("#configuration input[type=submit]").value = "Disconnect";
-	const configInputs = [...document.querySelectorAll("#configuration input:not([type=submit])")];
-	for(const input of configInputs){
-		disable(input);
-	}
-	const controlInputs = [...document.querySelectorAll("#controllers input")];
-	for(const input of controlInputs){
-		displayValue(input);
-		attachEvent(input);
-		enable(input);
-	}
+function onOscReady(){
+    console.log("You are connected to the web socket server");
 }
 
 function onOscClose(){
-	connected = false;
-	document.querySelector("#configuration input[type=submit]").value = "Connect";
-	const configInputs = [...document.querySelectorAll("#configuration input:not([type=submit])")];
-	for(const input of configInputs){
-		enable(input);
-	}
-	const controlInputs = [...document.querySelectorAll("#controllers input")];
-	for(const input of controlInputs){
-		removeValue(input);
-		detachEvent(input);
-		disable(input);
-	}
+    console.log("You are disconnected");
 }
 
-function disable(target){
-	target.setAttribute("disabled", true);
+function onMessage(oscMsg){
+    console.log("An OSC message just arrived!");
+    console.log(oscMsg.address);
+    for(let arg of oscMsg.args){
+        console.log(arg.value);
+    }
 }
 
-function enable(target){
-	target.removeAttribute("disabled");
+function send(address, value){
+    oscPort.send({
+		address: address,
+		args: [{
+			type: getType(value),
+			value: value
+		}]
+	});   
 }
 
-function attachEvent(input){
-	input.addEventListener("input", onInput, false);
+function getType(value){
+    if(toString.call(value) === '[object Number]'){
+        if((""+value).includes(".")){
+            return "f";
+        }else{
+            return "i";
+        }
+    }
+    else if(toString.call(value) === '[object String]'){
+        return "s";
+    }
 }
-
-function detachEvent(input){
-	input.removeEventListener("input", onInput, false);
-}
-
-function onInput(event){
-	if(!oscPort)return;
-	displayValue(event.target);
-	oscPort.send({
-		address: event.target.name,
-		args: [
-			{
-				type: getType(event.target),
-				value: event.target.value
-			}
-		]
-	});
-}
-
-function getType(target){
-	switch(target.type){
-		case "range" :  return "f";
-		case "text" :   return "s";
-	}
-}
-
-function displayValue(target){
-	if(target.nextElementSibling){
-		target.nextElementSibling.innerText = target.value;	
-	}
-}
-
-function removeValue(target){
-	if(target.nextElementSibling){
-		target.nextElementSibling.innerText = "";	
-	}
-}
-
-docReady(setup);
