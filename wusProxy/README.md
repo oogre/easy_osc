@@ -2,7 +2,9 @@ Easy OSC
 
 ## wusProxy
 
-wusProxy is a middleware. It convert communications between Serial, Websocket and UDP. This piece of code is written in Processing (Java), you could find into wus_proxy folder all the code needed. To run this code install [Processing](http://processing.org), then install dependencies [controlP5]() and [udp]() (you'll find these dependencies into the libraries folder).
+wusProxy is a Proxy. It convert communications between Serial, Websocket and UDP. This piece of code is written in Processing (Java), you could find into wus_proxy folder all the code needed. To run this code install [Processing](http://processing.org), then install dependencies [controlP5]() and [udp]() (you'll find these dependencies into the libraries folder).
+
+> Si deux personnes qui ne parlent pas la même langue veulent communiquer, elles ont besoin d'un interprète. En informatique, deux entités utilisant des technologies différentes peuvent communiquer entre elles grâce à un intermédiaire qui interprète leurs échanges, un proxy.
 
 Open wus_proxy.pde with processing IDE, then click Play button.
 
