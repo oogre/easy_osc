@@ -3,6 +3,7 @@
 ## Arduino
 
 Install this dependency : [GitHub - CNMAT/OSC: OSC: Arduino and Teensy implementation of OSC encoding](https://github.com/CNMAT/OSC) 
+
 _OSC_ Library may be found in the libraries directory. Drop the _OSC_ directory into ```$HOME/Documents/Arduino/libraries```.
 Then restart processing.
 
