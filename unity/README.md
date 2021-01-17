@@ -4,7 +4,9 @@
 
 This piece of code is written in Unity (C#), you could find into oscUnity folders all the code needed. To run this code install [Unity](), then drop Assets/Scripts/* into your Assets. It use dependencies [MyBox](https://github.com/Deadcows/MyBox), [websocket-sharp](https://github.com/sta/websocket-sharp), a custom version of [UnityOSC](https://github.com/thomasfredericks/UnityOSC) (you'll find these dependencies into the libraries folder.).
 
-Create an empty object with component OSC (Assets/Scripts/OSC/OSC.cs)
+_MyBox_, _websocket-sharp_ and _UnityOSC_ Libraries are bundled into _OSC_ directory in the libraries directory. Drop the _OSC_ directory into your Assets forlder.
+
+Create an empty object with component OSC (Assets/OSC/OSC.cs)
 
 
 

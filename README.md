@@ -26,7 +26,7 @@ We've build this repo to destination of students at ESA Brussel / Digital Art. T
   
   - [oscSerial](./arduino#oscSerial) **x** [wusProxy/serial2udp](./wusProxy#serial2udp) **x** [oscUDP](./processing#oscudp)
 
-- Arduino x Unity
+- Arduino x Unity(udp)
   
   - [oscSerial](./arduino#oscSerial) **x** [wusProxy/serial2udp](./wusProxy#serial2udp) **x** [oscUnity](./unity#udp)
 
@@ -34,26 +34,26 @@ We've build this repo to destination of students at ESA Brussel / Digital Art. T
   
   - [oscSerial](./arduino#oscSerial) **x** [wusProxy/serial2ws](./wusProxy#serial2ws) **x** [oscBrowser](./webBrowser)
 
-- Processing x Processing
+- Processing(udp) x Processing(udp)
   
   - [oscUDP](./processing#oscudp) **x** [oscUDP](./processing#oscudp)
 
-- Processing x Unity
+- Processing(udp) x Unity(udp)
   
   - [oscUDP](./processing#oscudp) **x** [oscUnity](./unity#udp)
 
-- Processing x WebBrowser
+- Processing(ws) x WebBrowser(ws)
   
   - [oscWS](./processing#oscws) **x** [oscBrowser](./webBrowser)
 
-- Unity x Unity
+- Unity(udp) x Unity(udp)
   
   - [oscUnity](./unity#udp) **x** [oscUnity](./unity#udp)
 
-- Unity x WebBrowser
+- Unity(ws) x WebBrowser(ws)
   
   - [oscUnity](./unity#ws) **x** [oscBrowser](./webBrowser)
 
-- WebBrowser x WebBrowser
+- WebBrowser(ws) x WebBrowser(ws)
   
   - [oscBrowser](./webBrowser) **x** [wusProxy/ws2ws](./wusProxy#ws2ws) **x** [oscBrowser](./webBrowser)

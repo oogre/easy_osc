@@ -3,6 +3,7 @@
 ## Processing
 
 This piece of code is written in Processing (Java), you could find into oscUDP and oscWS folders all the code needed. To run this code install [Processing](http://processing.org), then install dependencies [oscP5]() and [webSockets]() (you'll find these dependencies into the libraries folder).
+_oscP5_ Library and _webSockets_ Library may be found in the libraries directory. Drop the _oscP5_ directory and _webSockets_ directory into ```$HOME/Documents/Processing/libraries```. Then restart processing.
 
 ### oscUDP
 
