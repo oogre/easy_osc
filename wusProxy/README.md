@@ -2,9 +2,9 @@ Easy OSC
 
 ## wusProxy
 
-wusProxy is a Proxy. It convert communications between Serial, Websocket and UDP. This piece of code is written in Processing (Java), you could find into wus_proxy folder all the code needed. To run this code install [Processing](http://processing.org), then install dependencies [controlP5]() and [udp]() (you'll find these dependencies into the libraries folder).
+wusProxy is a Proxy. It convert communications between Serial, Websocket and UDP. This piece of code is written in Processing (Java), you could find into wus_proxy folder all the code needed. To run this code install [Processing](http://processing.org), then install dependencies [oscP5](), [udp](), [controlp5]() and [webSockets]() (you'll find these dependencies into the libraries folder).
 
-_udp_ Library and _controlP5_ Library may be found in the libraries directory. Drop the _udp_ directory and _controlP5_ directory into ```$HOME/Documents/Processing/libraries```. Then restart processing.
+_oscP5_ Library, _udp_ Library, _controlp5_ Library and _webSockets_ Library may be found in the libraries directory. Drop the _udp_ directory, _oscP5_ directory_, _webSockets_ directory and _controlP5_ directory into ```$HOME/Documents/Processing/libraries```. Then restart processing.
 
 > Si deux personnes qui ne parlent pas la même langue veulent communiquer, elles ont besoin d'un interprète. En informatique, deux entités utilisant des technologies différentes peuvent communiquer entre elles grâce à un intermédiaire qui interprète leurs échanges, un proxy.
 
