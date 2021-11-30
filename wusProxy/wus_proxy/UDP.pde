@@ -7,7 +7,7 @@ String ipAddress = "127.0.0.1";
 
 void setupUDP() {
   udp = new UDP( this, inPort );
-  //udp.log( true );     // <-- printout the connection activity
+  udp.log( true );     // <-- printout the connection activity
   udp.listen( true );
 }
 

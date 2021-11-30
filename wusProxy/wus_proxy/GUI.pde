@@ -182,16 +182,29 @@ void controlEvent(ControlEvent theEvent) {
 //start everything
 public void START() {
   switch(PROXY_TYPE){
-    case Serial__WebSocket:
-    setupWSServer();
-    setupSerial();
+    case Serial__WebSocket:{
+      Textfield portField = cp5.get(Textfield.class, "Port Number");
+      PORT = Integer.parseInt(portField.getText());
+      setupWSServer();
+      setupSerial();
+    }
     break;
-    case Serial__UDP:
-    setupUDP();
-    setupSerial();
+    case Serial__UDP:{
+      Textfield inPortField = cp5.get(Textfield.class, "Incoming Port Number");
+      inPort = Integer.parseInt(inPortField.getText());
+      Textfield outPortField = cp5.get(Textfield.class, "Outgoing Port Number");
+      outPort = Integer.parseInt(outPortField.getText());
+      Textfield ipField = cp5.get(Textfield.class, "IP address");
+      ipAddress = ipField.getText();
+      setupUDP();
+      setupSerial();
+    }
     break;
-    case WebSocket__WebSocket:
-    setupForward();
+    case WebSocket__WebSocket:{
+      Textfield portField = cp5.get(Textfield.class, "Port Number");
+      PORT = Integer.parseInt(portField.getText());
+      setupForward();
+    }
     break;
   }
   cp5.get(Group.class, "nav").hide();

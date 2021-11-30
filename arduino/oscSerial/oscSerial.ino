@@ -1,3 +1,4 @@
+
 #include <OSCMessage.h>
 #include <OSCBoards.h>
 
@@ -9,19 +10,24 @@ SLIPEncodedUSBSerial SLIPSerial( thisBoardsSerialUSB );
 SLIPEncodedSerial SLIPSerial(Serial); // Change to Serial1 or Serial2 etc. for boards with multiple serial ports that don’t have Serial
 #endif
 
-void setup() {
-  // put your setup code here, to run once:
-  SLIPSerial.begin(9600);
 
+
+int redChannel = 3;
+int greenChannel = 5;
+int blueChannel = 6;
+
+void setup() {
+  SLIPSerial.begin(9600);
+  pinMode(redChannel, OUTPUT);
+  pinMode(greenChannel, OUTPUT);
+  pinMode(blueChannel, OUTPUT);
 }
 
 void loop() {
   OSCreceive();
-  
   OSCMessage msg("/cube/x");
-  msg.add((int)random(-10, 10));
+  msg.add((int)analogRead(A0));
   send(&msg);
-  
   delay(33);
 }
 
@@ -35,7 +41,6 @@ void send(OSCMessage * msg) {
 void OSCreceive() {
   OSCMessage messageIN;
   int size;
-
   if (SLIPSerial.available())
     while (!SLIPSerial.endofPacket())
       while (SLIPSerial.available())
@@ -46,15 +51,14 @@ void OSCreceive() {
   }
 }
 
-void LEDcontrol(OSCMessage &msg)
-{
-  if (msg.isFloat(0))
-  {
-    pinMode(LED_BUILTIN, OUTPUT);
-    bool state = LOW;
-    if(msg.getFloat(0) > 0){
-      state = HIGH;
-    }
-    digitalWrite(LED_BUILTIN, state);
+void LEDcontrol(OSCMessage &msg) {
+  if (msg.isInt(0)) {
+    analogWrite(redChannel, msg.getInt(0));
+  }
+  if (msg.isInt(1)) {
+    analogWrite(greenChannel, msg.getInt(1));
+  }
+  if (msg.isInt(2)) {
+    analogWrite(blueChannel, msg.getInt(2));
   }
 }
