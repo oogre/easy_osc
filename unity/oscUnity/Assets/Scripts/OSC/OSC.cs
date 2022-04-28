@@ -194,6 +194,8 @@ public class OSC : MonoBehaviour
     {
         Debug.Log("Opening OSC listener on port " + inPort);
 
+        DontDestroyOnLoad(this.gameObject);
+
         switch (connectionType)
         {
             case CONNECTION_TYPE.UDP:
