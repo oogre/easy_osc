@@ -10,7 +10,7 @@ import netP5.*;
 
 final int UDP_IN_PORT = 12000;
 final int UDP_OUT_PORT = 12001;
-final String IP = "127.0.0.1";
+final String IP = "192.168.1.255";
 
 OscP5 oscP5;
 NetAddress myRemoteLocation;
@@ -26,24 +26,21 @@ void draw() {
 
   background(random(255), random(255), random(255));
   OscMessage myMessage = new OscMessage("/led");
-  color centerPixelColor = get(width/2, height/2);
-  myMessage.add((int)red(centerPixelColor));
-  myMessage.add((int)green(centerPixelColor));
-  myMessage.add((int)blue(centerPixelColor));
+  myMessage.add(frameCount%2 == 0 ? 1 : 0);
   oscP5.send(myMessage, myRemoteLocation);
 }
 
 /* incoming osc message are forwarded to the oscEvent method. */
 void oscEvent(OscMessage theOscMessage) {
-  print("### received an osc message.");
-  print(" addrpattern: "+theOscMessage.addrPattern());
-  println(" typetag: "+theOscMessage.typetag());
+  //print("### received an osc message.");
+  //print(" addrpattern: "+theOscMessage.addrPattern());
+  //println(" typetag: "+theOscMessage.typetag());
   String types = theOscMessage.typetag();
-  print("values : ");
+  //print("values : ");
   for(int i = 0 ; i < types.length(); i ++) {
     char type = types.charAt(i);
     if (type == 'f') {
-      println("\t", theOscMessage.get(i).floatValue());
+      //println("\t", theOscMessage.get(i).floatValue());
     }else if (type == 'i') {
       println("\t", theOscMessage.get(i).intValue());
     }else if (type == 'F') {
