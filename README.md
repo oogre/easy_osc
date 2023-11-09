@@ -24,15 +24,15 @@ We've build this repo to destination of students at ESA Brussel / Digital Art. T
 
 - Arduino x Processing
   
-  - [Arduino](./arduino) **x** [wusProxy/serial2udp](./wusProxy#serial2udp) **x** [oscUDP](./processing#oscudp)
+  - [Arduino](./arduino) **x** [oscUDP](./processing#oscudp)
 
 - Arduino x Unity(udp)
   
-  - [Arduino](./arduino) **x** [wusProxy/serial2udp](./wusProxy#serial2udp) **x** [oscUnity](./unity#udp)
+  - [Arduino](./arduino) **x** [oscUnity](./unity#udp)
 
 - Arduino x WebBrowser
   
-  - [Arduino](./arduino) **x** [wusProxy/serial2ws](./wusProxy#serial2ws) **x** [oscBrowser](./webBrowser)
+  - [Arduino](./arduino) **x** [oscBrowser](./webBrowser)
 
 - Processing(udp) x Processing(udp)
   
