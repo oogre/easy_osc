@@ -1,0 +1,3 @@
+[submodule "arduino-esp32/libraries/Dictionary"]
+	path = arduino-esp32/libraries/Dictionary
+	url = git@github.com:KeeganMartin/Dictionary.git

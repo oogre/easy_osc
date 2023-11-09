@@ -1,0 +1,16 @@
+{
+  "name": "receiver_osc",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "node-osc": "^8.1.0",
+    "osc": "^2.4.4"
+  }
+}

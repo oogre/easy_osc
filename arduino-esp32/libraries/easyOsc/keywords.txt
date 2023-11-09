@@ -1,0 +1,26 @@
+onMessage	KEYWORD1
+update	KEYWORD1
+send	KEYWORD1
+begin	KEYWORD1
+MessageHandler	KEYWORD1
+
+#######################################
+# Syntax Coloring Map SPI
+#######################################
+#######################################
+# Class
+#######################################
+EasyOsc	KEYWORD3
+
+#######################################
+# Datatypes	(KEYWORD1)
+#######################################
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+#######################################
+# Constants	(LITERAL1)
+#######################################
+CONNECTION_TYPE LITERAL1
+ACCESS_POINT	LITERAL1
+REGULAR_WIFI	LITERAL1

@@ -1,7 +1,7 @@
 let oscPort;
 let server = {
-	IP : "127.0.0.1",
-	port : 6969
+	IP : "0.0.0.0",
+	port : 9999
 }
 function setup() {
 	oscPort = new osc.WebSocketPort({
@@ -15,9 +15,9 @@ function setup() {
 }
 
 function draw(){
-	send("/theAddress", floor(random(-10, 10)));
-    send("/other/address", random(-10, 10));
-    send("/yet/another/address", "text");
+	// send("/theAddress", floor(random(-10, 10)));
+    // send("/other/address", random(-10, 10));
+    // send("/yet/another/address", "text");
 }
 
 
