@@ -3,8 +3,8 @@
 // https://fr.aliexpress.com/item/1005004500127370.html
 // https://fr.aliexpress.com/item/1005005564949759.html
 
-#include "easyOsc.h";
-#include "stepper.h";
+#include <easyOsc.h>
+#include "stepper.h"
 
 /*
   Create EasyOsc (an osc helper object)
