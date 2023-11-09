@@ -20,19 +20,19 @@ We've build this repo to destination of students at ESA Brussel / Digital Art. T
 
 - Arduino x Arduino
   
-  - [oscSerial](./arduino#oscSerial) **x** [oscSerial](./arduino#oscSerial)
+  - [Arduino](./arduino) **x** [Arduino](./arduino)
 
 - Arduino x Processing
   
-  - [oscSerial](./arduino#oscSerial) **x** [wusProxy/serial2udp](./wusProxy#serial2udp) **x** [oscUDP](./processing#oscudp)
+  - [Arduino](./arduino) **x** [wusProxy/serial2udp](./wusProxy#serial2udp) **x** [oscUDP](./processing#oscudp)
 
 - Arduino x Unity(udp)
   
-  - [oscSerial](./arduino#oscSerial) **x** [wusProxy/serial2udp](./wusProxy#serial2udp) **x** [oscUnity](./unity#udp)
+  - [Arduino](./arduino) **x** [wusProxy/serial2udp](./wusProxy#serial2udp) **x** [oscUnity](./unity#udp)
 
 - Arduino x WebBrowser
   
-  - [oscSerial](./arduino#oscSerial) **x** [wusProxy/serial2ws](./wusProxy#serial2ws) **x** [oscBrowser](./webBrowser)
+  - [Arduino](./arduino) **x** [wusProxy/serial2ws](./wusProxy#serial2ws) **x** [oscBrowser](./webBrowser)
 
 - Processing(udp) x Processing(udp)
   
