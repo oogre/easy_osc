@@ -104,32 +104,32 @@ class EasyOsc {
       char* char_array = new char[address.length() + 1];
       strcpy(char_array, address.c_str());
       send(char_array, value);
+      delete char_array;
     }
 
     template <typename T>
     void send(char * address, T value) {
-      OSCMessage msg(address);
-      msg.add(value);
-      send(&msg);
+        OSCMessage msg(address);
+        msg.add(value);
+        switch(con_type){
+            case USB_SERIAL :
+                SLIPSerial.beginPacket();
+                msg.send(SLIPSerial);
+                SLIPSerial.endPacket();
+                break;
+            default :
+                #ifdef ESP32
+                Udp.beginPacket(outIP, outPort);
+                msg.send(Udp);
+                Udp.endPacket();
+                #endif
+                break;
+        }
+        msg.empty();
     }
-
-    void send(OSCMessage * msg) {
-      switch(con_type){
-        case USB_SERIAL : 
-          SLIPSerial.beginPacket();
-          msg->send(SLIPSerial);
-          SLIPSerial.endPacket();
-          msg->empty();
-        break;
-        default : 
-          #ifdef ESP32
-            Udp.beginPacket(outIP, outPort);
-            msg->send(Udp);
-            Udp.endPacket();
-            msg->empty();
-          #endif
-        break;
-      }
+    
+    void setOutIP(uint8_t A, uint8_t B, uint8_t C, uint8_t D){
+        outIP = IPAddress(A, B, C, D);
     }
 
   private :
